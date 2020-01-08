@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-title class="new-icon-title-size">
+        Filter
+        <ion-icon name="close-circle" (click)="dismiss()" class="new-icon-title-size fr icon-size"></ion-icon>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <form #form="ngForm" (ngSubmit)="filter(form)">
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div padding>
+
+            <ion-item>
+              <ion-label>Semester</ion-label>
+              <ion-select name="semester" value="" okText="Ok" cancelText="Cancel" ngModel>
+                <ion-select-option value=""> Select </ion-select-option>
+                <ion-select-option value="1st"> 1st </ion-select-option>
+                <ion-select-option value="2nd"> 2nd </ion-select-option>
+                <ion-select-option value="3rd"> 3rd  </ion-select-option>
+                <ion-select-option value="4th"> 4th </ion-select-option>
+                <ion-select-option value="5th"> 5th </ion-select-option>
+                <ion-select-option value="6th"> 6th </ion-select-option>
+                <ion-select-option value="7th"> 7th </ion-select-option>
+                <ion-select-option value="8th"> 8th </ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Branch</ion-label>
+              <ion-select name="branch" value="" okText="Ok" cancelText="Cancel" ngModel>
+                <ion-select-option value=""> Select </ion-select-option>
+                <ion-select-option value="CE"> CE </ion-select-option>
+                <ion-select-option value="IT"> IT </ion-select-option>
+                <ion-select-option value="ME"> ME </ion-select-option>
+                <ion-select-option value="EE"> EE </ion-select-option>
+                <ion-select-option value="IC"> IC </ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Subject</ion-label>
+              <ion-select name="subject" value="" okText="Ok" cancelText="Cancel" ngModel>
+                <ion-select-option value=""> Select </ion-select-option>
+                <ion-select-option value="WT"> WT </ion-select-option>
+                <ion-select-option value="DOS"> DOS </ion-select-option>
+                <ion-select-option value="SE"> SE </ion-select-option>
+                <ion-select-option value="AJAVA"> AJAVA </ion-select-option>
+                <ion-select-option value="TOC"> TOC </ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Sort</ion-label>
+              <ion-select name="sort" value="" okText="Ok" cancelText="Cancel" ngModel>
+                <ion-select-option value=""> Relevance </ion-select-option>
+                <ion-select-option value="lth"> Price : Low To High </ion-select-option>
+                <ion-select-option value="htl"> Price : High To Low </ion-select-option>
+              </ion-select>
+            </ion-item>
+
+          </div>
+          <div padding>
+            <ion-button size="large" type="submit" [disabled]="form.invalid" expand="block">Apply</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    </form>
+</ion-content>

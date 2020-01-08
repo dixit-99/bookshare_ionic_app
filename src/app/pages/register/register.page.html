@@ -1,0 +1,44 @@
+<ion-content padding>
+  <form #form="ngForm" (ngSubmit)="register(form)">
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div text-center>
+            <h3>Register</h3>
+          </div>
+          <div padding>
+            <ion-item>
+              <ion-input name="email" type="email" placeholder="Email" ngModel required></ion-input>
+            </ion-item><br> 
+            <ion-item>
+              <ion-input name="userName" type="text" placeholder="Username" ngModel required></ion-input>
+            </ion-item><br> 
+            <ion-item>
+              <ion-input name="password" type="password" placeholder="Password" ngModel required></ion-input>
+            </ion-item><br>
+            <ion-item>
+              <ion-input name="cpassword" type="password" placeholder="Confirm Password" ngModel required></ion-input>
+            </ion-item><br>
+            <ion-item>
+              <ion-input name="mono" type="number" placeholder="Mobile No" ngModel required></ion-input>
+            </ion-item><br>
+            <ion-item>
+              <ion-label>College</ion-label>
+              <ion-select name="college" value="" okText="Okay" cancelText="Cancel" ngModel required>
+                <ion-select-option value=""> Select </ion-select-option>
+                <ion-select-option value="L.D"> L.D </ion-select-option>
+                <ion-select-option value="L.J"> L.J </ion-select-option>
+                <ion-select-option value="VGEC"> VGEC  </ion-select-option>
+                <ion-select-option value="SVNIT"> SVNIT </ion-select-option>
+              </ion-select>
+            </ion-item>
+          </div>
+          <div padding>
+            <ion-button size="large" type="submit" [disabled]="form.invalid" expand="block">Create</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    </form>
+
+  </ion-content>

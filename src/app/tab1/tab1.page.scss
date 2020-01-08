@@ -2,3 +2,57 @@
   max-height: 35vh;
   overflow: hidden;
 }
+
+.img{
+  height: 120px;
+  margin: -10px;
+}
+
+.book-details{
+  margin-top: -10px;
+}
+
+.book-title{
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+  float: left;
+}
+
+.new-wishlist{
+  font-size: 18px;
+  float: right;
+  margin-top:4px;
+}
+
+.book-price{
+  color: black;
+  font-weight: bold;
+  font-size: 13px;
+  clear: left;
+}
+
+.discount{
+  color: #0597e1;//#035781;
+}
+
+.original-price{
+  text-decoration: line-through;
+  color: #8c8c8c;
+}
+
+.book-badges{
+  margin-top: 5px;
+}
+
+ion-badge{
+  margin-right: 5px;
+  background-color: #0597e1;//#035781;
+  font-size: 12px;
+  padding: 6px;
+}
+
+img{
+  border: 1px solid black;
+  height: 120px;
+}

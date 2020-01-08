@@ -24,3 +24,49 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.tab-button {
+    &[aria-selected="false"] {
+    color: red !important;
+    }
+
+    &[aria-selected="true"] {
+    //color: #034f84 !important;
+    ion-icon{ font-size: 30px !important;}
+    }
+}
+
+.new-background-color{
+    --background: #21B4FB;
+}
+
+.new-icon-title-size{
+    font-size: 21px;
+    margin-top: 0px;
+    color: white;
+}
+
+.new-book-title{
+    font-size: 27px;
+    margin-left: 15px;
+    margin-top: 5px;
+    float: left;
+    color: white;
+}
+
+.icon-size {
+    font-size: 25px;
+    margin-left: 10px;
+}
+
+ion-button {
+    --background: #21B4FB;
+}
