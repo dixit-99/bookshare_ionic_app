@@ -10,9 +10,10 @@ const routes: Routes = [
   { path: 'tab5', loadChildren: './tab5/tab5.module#Tab5PageModule' },
   { path: 'book-deatils', loadChildren: './pages/book-deatils/book-deatils.module#BookDeatilsPageModule' },
   { path: 'menu', loadChildren: './menu/menu.module#MenuPageModule' },
-  { path: 'register', loadChildren: './pages/register/register.module#RegisterPageModule' },
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
-  { path: 'filter', loadChildren: './pages/filter/filter.module#FilterPageModule' }
+  { path: 'register', loadChildren: './pages/register/register.module#RegisterPageModule' },
+  { path: 'filter', loadChildren: './pages/filter/filter.module#FilterPageModule' },
+  { path: 'add-book', loadChildren: './pages/add-book/add-book.module#AddBookPageModule' }
 ];
 @NgModule({
   imports: [

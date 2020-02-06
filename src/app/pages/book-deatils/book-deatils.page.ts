@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component} from '@angular/core';
 import { Platform } from '@ionic/angular';
 
 @Component({
@@ -6,7 +6,7 @@ import { Platform } from '@ionic/angular';
   templateUrl: './book-deatils.page.html',
   styleUrls: ['./book-deatils.page.scss'],
 })
-export class BookDeatilsPage implements OnInit,AfterViewInit,OnDestroy {
+export class BookDeatilsPage {
 
   constructor(
     private platform: Platform
@@ -16,16 +16,13 @@ export class BookDeatilsPage implements OnInit,AfterViewInit,OnDestroy {
 
   backButtonSubscription; 
 
-  ngOnInit() {
-  }
-
-  ngAfterViewInit () {
-    this.backButtonSubscription = this.platform.backButton.subscribe(async () => { 
+  ionViewWillEnter() {
+    this.backButtonSubscription = this.platform.backButton.subscribeWithPriority(5,() => {
       window.history.back();
-      });
+    });
   }
 
-  ngOnDestroy() {
+  ionViewDidLeave() {
     this.backButtonSubscription.unsubscribe();
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { Platform } from '@ionic/angular';
 
 @Component({
@@ -6,24 +6,21 @@ import { Platform } from '@ionic/angular';
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss']
 })
-export class Tab2Page implements OnInit,AfterViewInit,OnDestroy {
+export class Tab2Page {
 
   constructor(
     private platform: Platform
   ) {}
 
   backButtonSubscription;
-  
-  ngOnInit() {
+
+  ionViewWillEnter() {
+    this.backButtonSubscription = this.platform.backButton.subscribeWithPriority(4,() => {
+      window.history.back();
+    });
   }
 
-  ngAfterViewInit () {
-    this.backButtonSubscription = this.platform.backButton.subscribe(async () => { 
-      navigator['app'].exitApp();
-      });
-  }
-
-  ngOnDestroy() {
+  ionViewDidLeave() {
     this.backButtonSubscription.unsubscribe();
   }
 

@@ -2,11 +2,44 @@
     <ion-toolbar class="new-background-color">
       <ion-title class="new-icon-title-size">
         Profile
+        <ion-icon name="create" class="new-icon-title-size fr icon-size" (click)="edit()"></ion-icon>
       </ion-title>
     </ion-toolbar>
   </ion-header>
-  
-  <ion-content text-center>
-      <ion-button style="margin-top: 80px;" (click)="logout()">Logout</ion-button>
+
+  <ion-content>
+      <div class="ion-text-center">
+        <ion-icon name="contact" class="profile"></ion-icon>
+      </div>
+      <table border="1" *ngFor="let u of user" style="margin-top: 5px; font-size: 16px; width: 98%; padding: 15px; background-color: #21B4FB; color: white; border-color: white; margin-left: 1%;">
+        <tr>
+          <td width="40%" height="45px" style="padding: 5px;"> Name : </td>
+          <td width="60%" height="45px" style="padding: 5px;"> {{u.firstName}} {{u.lastName}} </td>
+        </tr>
+        <tr>
+            <td width="40%" height="45px" style="padding: 5px;"> Whatsapp No : </td>
+            <td width="60%" height="45px" style="padding: 5px;"> {{u.wpno}} </td>
+        </tr>
+        <tr>
+          <td width="40%" height="45px" style="padding: 5px;"> Email : </td>
+          <td width="60%" height="45px" style="padding: 5px;"> {{u.email}} </td>
+        </tr>
+        <tr>
+          <td width="40%" height="45px" style="padding: 5px;"> College : </td>
+          <td width="60%" height="45px" style="padding: 5px;"> {{u.college}} </td>
+        </tr>
+        <tr>
+          <td width="40%" height="45px" style="padding: 5px;"> Type : </td>
+          <td width="60%" height="45px" style="padding: 5px;"> {{u.userType}} </td>
+        </tr>
+      </table>
+      <div class="ion-text-center">
+        <ion-button style='margin-top: 30px;' (click)='logout()'>Logout</ion-button>
+      </div>
+
+      <div id="data">
+        {{userid}}
+      </div>
+      
   </ion-content>
   

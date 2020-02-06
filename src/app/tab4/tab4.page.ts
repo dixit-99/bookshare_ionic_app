@@ -1,30 +1,33 @@
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component} from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab4',
   templateUrl: './tab4.page.html',
   styleUrls: ['./tab4.page.scss'],
 })
-export class Tab4Page implements OnInit,AfterViewInit,OnDestroy {
+export class Tab4Page {
 
   constructor(
-    private platform: Platform
+    private platform: Platform,
+    private router: Router
   ) {}
 
   backButtonSubscription;
-  
-  ngOnInit() {
+
+  ionViewWillEnter() {
+    this.backButtonSubscription = this.platform.backButton.subscribeWithPriority(4,() => {
+      window.history.back();
+    });
   }
 
-  ngAfterViewInit () {
-    this.backButtonSubscription = this.platform.backButton.subscribe(async () => { 
-      navigator['app'].exitApp();
-      });
-  }
-
-  ngOnDestroy() {
+  ionViewDidLeave() {
     this.backButtonSubscription.unsubscribe();
+  }
+
+  addBook() {
+    this.router.navigateByUrl('/add-book');
   }
 
 }

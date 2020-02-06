@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component} from '@angular/core';
 import { NavController, Platform, ModalController} from '@ionic/angular';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { FilterPage } from '../pages/filter/filter.page';
@@ -8,30 +8,28 @@ import { FilterPage } from '../pages/filter/filter.page';
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page implements OnInit,AfterViewInit,OnDestroy {
+export class Tab1Page {
 
   constructor(
     private navController: NavController,
     private nativeStorage: NativeStorage,
     private platform: Platform,
-    private modalController: ModalController
+    private modalController: ModalController,
   ) { 
-    this.nativeStorage.getItem('log');
     console.log("tab1");
   }
 
   backButtonSubscription;
-  
-  ngOnInit() {
+
+  ionViewWillEnter() {
+    this.backButtonSubscription = this.platform.backButton.subscribeWithPriority(3,() => {
+      if(window.confirm("Do you want to exit app ?")) {
+        navigator["app"].exitApp();
+      }
+    });
   }
 
-  ngAfterViewInit () {
-    this.backButtonSubscription = this.platform.backButton.subscribe(async () => { 
-      navigator['app'].exitApp();
-      });
-  }
-
-  ngOnDestroy() {
+  ionViewDidLeave() {
     this.backButtonSubscription.unsubscribe();
   }
   

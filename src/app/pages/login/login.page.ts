@@ -1,51 +1,60 @@
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
-import { from } from 'rxjs';
+import { Component} from '@angular/core';
 import { NavController, ToastController, Platform } from '@ionic/angular';
-import { async } from 'rxjs/internal/scheduler/async';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { UserServiceService } from 'src/app/services/user-service.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit,AfterViewInit,OnDestroy {
+export class LoginPage {
 
-  status=false;
+  backButtonSubscription :any;
+  status: boolean = false;
+  password_type: string = 'password';
+  password_icon: string = 'eye-off';
 
   constructor(
     private navController: NavController,
-    private toastController: ToastController,
     private nativeStorage: NativeStorage,
-    private platform: Platform
+    private platform: Platform,
+    private userService: UserServiceService
   ) { }
 
-  backButtonSubscription;
-  
-  ngOnInit() {
+  togglePasswordMode() {   
+    this.password_type = this.password_type === 'text' ? 'password' : 'text';
+    this.password_icon = this.password_icon === 'eye' ? 'eye-off' : 'eye';
   }
 
-  ngAfterViewInit () {
-    this.backButtonSubscription = this.platform.backButton.subscribe(async () => { 
-      navigator['app'].exitApp();
-      });
+  ionViewWillEnter() {
+    this.backButtonSubscription = this.platform.backButton.subscribeWithPriority(10,() => {
+      navigator["app"].exitApp();
+    });
   }
 
-  ngOnDestroy() {
+  ionViewDidLeave() {
     this.backButtonSubscription.unsubscribe();
   }
 
 
   login(form) {
-    if(form.value.email == "link" && form.value.password == 1234){
-      this.navController.navigateRoot('tabs/tab1');
-      // this.nativeStorage.setItem('user',form.value.email);
-      // this.nativeStorage.getItem('user');
-      
-      this.nativeStorage.setItem('my', form.value.email);
+    if(form.value.email=="" || form.value.password =="")
+      this.status = true;
+    else  
+      this.userService.login(form.value.email,form.value.password).subscribe( userId => this.loginCheck(userId));    
+  }
+
+  loginCheck(userId){
+    if(userId==0){
+      this.status = true;
     }
     else{
-      this.status = true;
+      this.navController.navigateRoot('tabs/tab1');
+      this.nativeStorage.setItem('userId',{user: userId}).then(
+        () => console.log("data stored"),
+        (error) => console.error(error)
+      );
     }
   }
 

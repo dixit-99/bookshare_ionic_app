@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { ModalController, Platform } from '@ionic/angular';
 import { Router } from '@angular/router';
 
@@ -7,7 +7,9 @@ import { Router } from '@angular/router';
   templateUrl: './filter.page.html',
   styleUrls: ['./filter.page.scss'],
 })
-export class FilterPage implements OnInit {
+export class FilterPage {
+
+  backButtonSubscription;
 
   constructor(
     private modalController: ModalController,
@@ -15,12 +17,7 @@ export class FilterPage implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit() {
-  }
-
   dismiss() {
-    // using the injected ModalController this page
-    // can "dismiss" itself and optionally pass back data
     this.modalController.dismiss({
       'dismissed': true
     });
@@ -30,11 +27,14 @@ export class FilterPage implements OnInit {
 
   }
 
-  backButtonSubscription;
-  ngAfterViewInit () {
-    this.backButtonSubscription = this.platform.backButton.subscribe(async () => { 
-        this.router.navigateByUrl("/tabs/tab1");
+  ionViewWillEnter() {
+    this.backButtonSubscription = this.platform.backButton.subscribeWithPriority(4,() => {
+      window.history.back();
     });
+  }
+
+  ionViewDidLeave() {
+    this.backButtonSubscription.unsubscribe();
   }
 
 }

@@ -1,0 +1,110 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-title class="new-icon-title-size">Add Book</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+  <ion-grid style="text-align: center;">
+    <ion-row>
+        <ion-col size="1">
+        </ion-col>
+        <ion-col size="5">
+            <div><img [src]="front" (click)="presentActionSheet('Front Side')" alt="java" style="height: 150px; border: 1px solid black;"></div>
+        </ion-col>
+        <ion-col size="5">
+            <div><img [src]="back" (click)="presentActionSheet('Back Side')" alt="java" style="height: 150px; border: 1px solid black;"></div>
+        </ion-col>
+        <ion-col size="1">
+          </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- <div class="ion-text-center">
+    <ion-button style='margin-top: 30px;' (click)='upload()'>Upload</ion-button>
+  </div> -->
+  
+  <!-- <div>{{flink.data.deletehash}}</div>
+  <div>{{flink.data.link}}</div>
+
+  <div>{{blink.data.deletehash}}</div>
+  <div>{{blink.data.link}}</div> -->
+
+  <form [formGroup]="bookForm" (ngSubmit)="upload()">
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-col class="ion-align-self-center" size-md="6" size-lg="5" size-xs="12">
+
+          <div>
+            <ion-input type="hidden" formControlName="bookId"></ion-input>
+
+            <ion-item>
+              <ion-label position="stacked" class="label">Book Name</ion-label>
+              <ion-input type="text" formControlName="bookName" class="input"></ion-input>
+            </ion-item><br>
+            <ion-item>
+              <ion-label position="stacked" class="label">Branch Name</ion-label>
+              <ion-input type="text" formControlName="branchName" class="input"></ion-input>
+            </ion-item><br>
+            <ion-item>
+              <ion-label position="stacked" class="label">Semester</ion-label>
+              <ion-input type="text" formControlName="semester" class="input"></ion-input>
+            </ion-item><br>
+            <ion-item>
+              <ion-label position="stacked" class="label">Subject Name</ion-label>
+              <ion-input type="text" formControlName="subjectName" class="input"></ion-input>
+            </ion-item><br>
+            <ion-item>
+              <ion-label position="stacked" class="label">Subject Code</ion-label>
+              <ion-input type="text" formControlName="subjectCode" class="input"></ion-input>
+            </ion-item><br>
+            <ion-item>
+              <ion-label position="stacked" class="label">Author</ion-label>
+              <ion-input type="text" formControlName="author" class="input"></ion-input>
+            </ion-item><br>
+            <ion-item>
+              <ion-label position="stacked" class="label">Publication</ion-label>
+              <ion-input type="text" formControlName="publication" class="input"></ion-input>
+            </ion-item><br>
+            <ion-item>
+              <ion-label position="stacked" class="label">Edition</ion-label>
+              <ion-input type="text" formControlName="edition" class="input"></ion-input>
+            </ion-item><br>
+            <ion-item>
+              <ion-label position="stacked" class="label">Published Year</ion-label>
+              <ion-input type="text" formControlName="publishedYear" class="input"></ion-input>
+            </ion-item><br>
+            <ion-item>
+              <ion-label position="stacked" class="label">Page</ion-label>
+              <ion-input type="text" formControlName="page" class="input"></ion-input>
+            </ion-item><br>
+            <ion-item>
+              <ion-label position="stacked" class="label">Book Condition</ion-label>
+              <ion-input type="text" formControlName="bookCondition" class="input"></ion-input>
+            </ion-item><br>
+            <ion-item>
+              <ion-label position="stacked" class="label">Original Price</ion-label>
+              <ion-input type="text" formControlName="originalPrice" class="input"></ion-input>
+            </ion-item><br>
+            <ion-item>
+              <ion-label position="stacked" class="label">Selling Price</ion-label>
+              <ion-input type="text" formControlName="sellingPrice" class="input"></ion-input>
+            </ion-item><br>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-text-center ion-padding">
+        <ion-col>
+          <ion-button size="large" shape="round" (click)="reset()">Reset</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button class="create" size="large" shape="round" type="submit" [disabled]="bookForm.invalid">Add</ion-button>
+        </ion-col>
+      </ion-row>
+      
+    </ion-grid>
+    </form>
+
+</ion-content>
