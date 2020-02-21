@@ -26,11 +26,11 @@ export class AppComponent {
       this.statusBar.styleLightContent();
       this.splashScreen.hide();
 
-      // this.nativeStorage.getItem('userId')
-      // .then(
-      //   data => this.router.navigateByUrl('tabs/tab1'),
-      //   error => this.router.navigateByUrl('/login')
-      // );
+      this.nativeStorage.getItem('userId')
+      .then(
+        data => this.router.navigateByUrl('tabs/tab1'),
+        error => this.router.navigateByUrl('/login')
+      );
 
     });
   }
