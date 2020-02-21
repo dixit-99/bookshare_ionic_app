@@ -7,6 +7,7 @@
 </ion-header>
 
 <ion-content>
+<div *ngFor="let book of book">
     <div>
 
       <ion-grid style="text-align: center;">
@@ -14,10 +15,10 @@
             <ion-col size="1">
             </ion-col>
             <ion-col size="5">
-                <div><img src="assets/img/img1.jpg" alt="java" style="height: 150px; border: 1px solid black;"></div>
+                <div><img [src]="book.imageLinkFront" alt="book image" style="height: 150px; border: 1px solid black;"></div>
             </ion-col>
             <ion-col size="5">
-                <div><img src="assets/img/img3.jpg" alt="java" style="height: 150px;"></div>
+                <div><img [src]="book.imageLinkBack" alt="book image" style="height: 150px;"></div>
             </ion-col>
             <ion-col size="1">
               </ion-col>
@@ -26,11 +27,11 @@
       
       <div style="font-size: 18px; font-weight: bold; text-align: center; margin-top: -8px;">Java Programming 12</div>
       <div style="font-size: 14px; text-align: center; font-weight: bold; margin-top: 8px;"> &#x20B9;100 <span style="text-decoration: line-through;
-        color: #8c8c8c;"> 200</span> <span style="color: #0597e1;"> 50% off </span></div>
+        color: #8c8c8c;"> 200</span> <span style="color: #3484f0;"> 50% off </span></div>
 
     </div>
 
-    <table border="1" style="margin-top: 12px; font-size: 13px; width: 98%; padding: 10px; background-color: #0597e1; color: white; border-color: white; margin-left: 1%;">
+    <table border="1" style="margin-top: 12px; font-size: 13px; width: 98%; padding: 10px; background-color: #3484f0; color: white; border-color: white; margin-left: 1%;">
       <tr>
         <td width="50%" height="30px" style="padding: 5px;"> Semester : </td>
         <td width="50%" height="30px" style="padding: 5px;"> Sem 5 </td>
@@ -74,7 +75,8 @@
     </table>
 
     <div style=" position: fixed; bottom: 0; width: 100%; height: 45px; text-align: center; font-weight: bold; font-size: 15px;">
-      <div style="width: 50%; height: 100%; float: left; padding-top: 13px; color:#0597e1; background-color: white;">Add To Wishlist</div>
-      <div style="width: 50%; height: 100%; float: left; padding-top: 13px; background-color: #0597e1; color: white;">Buy Now</div>
+      <div style="width: 50%; height: 100%; float: left; padding-top: 13px; color:#3483f0; background-color: white;">Add To Wishlist</div>
+      <div style="width: 50%; height: 100%; float: left; padding-top: 13px; color:#3483f0; border: 1px solid #3484f0;">Buy Now</div>
     </div>
+</div>
 </ion-content>

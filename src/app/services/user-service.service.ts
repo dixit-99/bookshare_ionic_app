@@ -19,12 +19,6 @@ export class UserServiceService {
     return this.http.post<void>(this.addUserUrl,user);
   }
 
-  addBookUrl = 'https://bookshare-spring.herokuapp.com/addBook';
-  //addBookUrl = 'http://localhost:9999/addBook';
-  addBook(book: Book) : Observable<void> {
-    return this.http.post<void>(this.addBookUrl,book);
-  }
-
   loginUrl='https://bookshare-spring.herokuapp.com/login';
   // loginUrl='http://localhost:9999/login';
   login(email: string,password: string) : Observable<number> {

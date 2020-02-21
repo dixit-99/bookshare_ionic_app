@@ -10,27 +10,27 @@
 
 
 <ion-content>
-
-    <ion-card (click)="bookDetails()">
+    <div *ngFor="let book of books">
+    <ion-card (click)="bookDetails(book.bookid)">
         <ion-card-content>
             <ion-grid>
                 <ion-row>
                   <ion-col size="3">
-                    <div class="img"><img src="assets/img/img1.jpg" alt="java"></div>
+                    <div class="img"><img [src]="book.imagelinkfront" alt="image"></div>
                   </ion-col>
                   <ion-col size="0.5"></ion-col>
                   <ion-col size="8.5">
                     <div class="book-details">
                       <div>
-                        <div class="book-title">Java Programming 12</div>
-                        <div><ion-icon name="heart" class="new-wishlist" style="color:red;"></ion-icon></div>
+                        <div class="book-title">{{book.bookname}}</div>
+                        <div><ion-icon src="assets/icon/heart.svg" class="new-wishlist"></ion-icon></div>
                       </div>
-                      <div class="book-price"> &#x20B9;100 <span class="original-price"> 200</span> <span class="discount"> 50% off </span></div>
+                      <div class="book-price"> &#x20B9;{{book.sellingprice}} <span class="original-price"> {{book.originalprice}}</span> <span class="discount"> {{book.discount}}% off </span></div>
                       <div class="book-badges">
-                          <ion-badge>Java</ion-badge>
-                          <ion-badge>SEM 5</ion-badge>
-                          <ion-badge>E Balagurusamy</ion-badge>
-                          <ion-badge>Mc Graw Hill</ion-badge>
+                          <ion-badge>{{book.subjectname}}</ion-badge>
+                          <ion-badge>SEM {{book.semester}}</ion-badge>
+                          <ion-badge>{{book.author}}</ion-badge>
+                          <ion-badge>{{book.publication}}</ion-badge>
                       </div>
                     </div>
                   </ion-col>
@@ -38,8 +38,9 @@
             </ion-grid>
         </ion-card-content>
     </ion-card>
+  </div>
 
-    <ion-card>
+    <!-- <ion-card>
         <ion-card-content>
             <ion-grid>
                 <ion-row>
@@ -149,6 +150,6 @@
                 </ion-row>
             </ion-grid>
         </ion-card-content>
-    </ion-card>
+    </ion-card> -->
 
 </ion-content>

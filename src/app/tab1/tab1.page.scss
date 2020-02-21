@@ -1,3 +1,7 @@
+ion-content {
+  text-transform: capitalize;
+}
+
 .welcome-card img {
   max-height: 35vh;
   overflow: hidden;
@@ -33,7 +37,7 @@
 }
 
 .discount{
-  color: #0597e1;//#035781;
+  color: #3484f0;//#035781;
 }
 
 .original-price{
@@ -47,7 +51,7 @@
 
 ion-badge{
   margin-right: 5px;
-  background-color: #0597e1;//#035781;
+  background-color: #3484f0;//#035781;
   font-size: 12px;
   padding: 6px;
 }

@@ -141,7 +141,7 @@ export class AddBookPage {
         this.back = this.webview.convertFileSrc(imageData);
       }
     }, error => this.error = JSON.stringify(error), {
-      quality: 70,
+      quality: 50,
       destinationType: camera.DestinationType.FILE_URI,
       sourceType: camera.PictureSourceType.CAMERA,
       encodingType: camera.EncodingType.JPEG
@@ -162,7 +162,7 @@ export class AddBookPage {
     }, error => this.error = JSON.stringify(error), {
       sourceType: camera.PictureSourceType.PHOTOLIBRARY,
       destinationType: camera.DestinationType.FILE_URI,
-      quality: 60,
+      quality: 50,
       encodingType: camera.EncodingType.JPEG,
     });
       this.presentActionSheet(mode);

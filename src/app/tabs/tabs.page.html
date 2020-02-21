@@ -1,24 +1,29 @@
 <ion-tabs>
 
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="tab1" class="tab-button">
-      <ion-icon name="md-home"></ion-icon>
+    <ion-tab-button tab="tab1" class="tab-button" (click)="fun(0)">
+      <ion-icon *ngIf="tab[0]" src="assets/icon/home-dark.svg"></ion-icon>
+      <ion-icon *ngIf="!tab[0]" src="assets/icon/home.svg"></ion-icon>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab2" class="tab-button">
-      <ion-icon name="ios-heart"></ion-icon>
+    <ion-tab-button tab="tab2" class="tab-button" (click)="fun(1)">
+      <ion-icon *ngIf="tab[1]" src="assets/icon/heart-dark.svg"></ion-icon>
+      <ion-icon *ngIf="!tab[1]" src="assets/icon/heart.svg"></ion-icon>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab3" class="tab-button">
-      <ion-icon name="md-cart"></ion-icon>
+    <ion-tab-button tab="tab3" class="tab-button" (click)="fun(2)">
+      <ion-icon *ngIf="tab[2]" src="assets/icon/cart-dark.svg"></ion-icon>
+      <ion-icon *ngIf="!tab[2]" src="assets/icon/cart.svg"></ion-icon>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab4" class="tab-button">
-      <ion-icon name="md-pricetag"></ion-icon>
+    <ion-tab-button tab="tab4" class="tab-button" (click)="fun(3)">
+      <ion-icon *ngIf="tab[3]" src="assets/icon/tag-dark.svg"></ion-icon>
+      <ion-icon *ngIf="!tab[3]" src="assets/icon/tag.svg"></ion-icon>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab5" class="tab-button">
-      <ion-icon name="ios-contact"></ion-icon>
+    <ion-tab-button tab="tab5" class="tab-button" (click)="fun(4)">
+      <ion-icon *ngIf="tab[4]" src="assets/icon/user-dark.svg"></ion-icon>
+      <ion-icon *ngIf="!tab[4]" src="assets/icon/user.svg"></ion-icon>
     </ion-tab-button>
   </ion-tab-bar>
 
