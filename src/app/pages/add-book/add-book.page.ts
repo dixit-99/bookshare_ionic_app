@@ -6,9 +6,9 @@ import { Book } from 'src/app/services/Book';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { Camera, PictureSourceType, CameraOptions } from '@ionic-native/Camera/ngx';
 import { User } from 'src/app/services/User';
-import { UserServiceService } from 'src/app/services/user-service.service';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { Router } from '@angular/router';
+import { BookServiceService } from 'src/app/services/book-service.service';
 
 @Component({
   selector: 'app-add-book',
@@ -50,7 +50,7 @@ export class AddBookPage {
     private formBuilder: FormBuilder,
     private camera: Camera,
     private webview: WebView,
-    private userService: UserServiceService,
+    private bookService: BookServiceService,
     private nativeStorage: NativeStorage,
     private router: Router,
     private loadingController: LoadingController,
@@ -229,7 +229,7 @@ export class AddBookPage {
       this.book.imageLinkBack = this.blink.data.link
       this.book.deleteBack = this.blink.data.deletehash
       console.log(this.book)
-      this.userService.addBook(this.book).subscribe(
+      this.bookService.addBook(this.book).subscribe(
         () => console.log("New Book Added"),
         (error) => console.log(error),
         () => { this.loadingController.dismiss()

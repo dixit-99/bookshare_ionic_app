@@ -5,6 +5,7 @@ import { FilterPage } from '../pages/filter/filter.page';
 import { Book } from '../services/Book';
 import { BookServiceService } from '../services/book-service.service';
 import { Router } from '@angular/router';
+import { UserServiceService } from '../services/user-service.service';
  
 @Component({
   selector: 'app-tab1',
@@ -21,7 +22,8 @@ export class Tab1Page implements OnInit {
     private platform: Platform,
     private modalController: ModalController,
     private loadingController: LoadingController,
-    private bookService: BookServiceService
+    private bookService: BookServiceService,
+    private userService: UserServiceService
   ) { 
   }
 
@@ -39,6 +41,9 @@ export class Tab1Page implements OnInit {
     this.presentLoadingWithOptions();
     this.bookService.getAllBook().subscribe( (data) =>  { 
         this.books = data
+        this.books.forEach(book => {
+          book.add = true;
+        });
         console.log(this.books)
       },
       (error) => { console.log(error) },
@@ -70,5 +75,20 @@ export class Tab1Page implements OnInit {
       component: FilterPage
     });
     return await modal.present();
+  }
+
+  addWishlist(i,bookid) {
+    this.books[i].add = false;
+    this.books[i].bookName = "abc"
+    this.nativeStorage.getItem('userId').then(
+      (data) => { this.userService.addWishlist(data.user,bookid).subscribe(
+                  (data) => {  let wishlistId = data
+                      this.books[i].bookName = "abc"
+                  },
+                  (error) => { console.log(error) }
+                  )
+                },
+      (error) => console.log(error)
+    )
   }
 }

@@ -2,6 +2,8 @@ import { User } from './User';
 
 export class Book{
 
+    add: boolean;
+    wishlistId: number; 
     bookId : number;
     author : string;
     bookCondition : string;

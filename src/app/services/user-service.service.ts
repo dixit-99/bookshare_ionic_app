@@ -36,5 +36,11 @@ export class UserServiceService {
   edit(userId: number) : Observable<User> {
     return this.http.get<User>(this.editUrl+"/"+ userId);
   }
+
+  addWishlistUrl='https://bookshare-spring.herokuapp.com/addWishlist';
+  // addwishlistUrl='http://localhost:9999/addWishlist';
+  addWishlist(userId,bookId) : Observable<number> {
+    return this.http.post<number>(this.addWishlistUrl+"/"+ userId+"/"+bookId,null);
+  }
   
 }

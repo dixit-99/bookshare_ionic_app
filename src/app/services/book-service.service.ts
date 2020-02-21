@@ -26,8 +26,8 @@ export class BookServiceService {
 
   getBookUrl = 'https://bookshare-spring.herokuapp.com/getBook';
   // getBookUrl = 'http://localhost:9999/getBook';
-  getBook(bookid): Observable<Book[]> {
-    return this.http.get<Book[]>(this.getBookUrl+"/"+bookid);
+  getBook(bookId): Observable<Book[]> {
+    return this.http.get<Book[]>(this.getBookUrl+"/"+bookId);
   }
 
 }

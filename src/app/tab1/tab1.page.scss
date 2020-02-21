@@ -60,3 +60,16 @@ img{
   border: 1px solid black;
   height: 120px;
 }
+
+.filter {
+  height: 50px;
+  width: 100%;
+  box-shadow: 0 2px 0 0 grey;
+}
+
+.sub-filter {
+  width: 50%;
+  height: 100%;
+  float: left;
+  box-shadow: 2px 0 0 0 grey;
+}
