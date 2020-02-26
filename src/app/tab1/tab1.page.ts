@@ -91,4 +91,8 @@ export class Tab1Page implements OnInit {
       (error) => console.log(error)
     )
   }
+
+  rmWishlist(wishlistId) {
+
+  }
 }
