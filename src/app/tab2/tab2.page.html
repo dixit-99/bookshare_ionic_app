@@ -20,8 +20,7 @@
                       <div class="book-details">
                         <div>
                           <div class="book-title" (click)="bookDetails(book.bookid)">{{book.bookname}}</div>
-                          <div *ngIf="book.add"><ion-icon src="assets/icon/heart.svg" class="new-wishlist" (click)="addWishlist(i,book.bookid)"></ion-icon></div>
-                          <div *ngIf="!book.add"><ion-icon src="assets/icon/wishlist.svg" class="new-wishlist" (click)="rmWishlist(i,book.wishlistId)"></ion-icon></div>
+                          <div><ion-icon name="trash" class="new-wishlist" style="color: red;" (click)="rmWishlist(book.wishlistid)"></ion-icon></div>
                         </div>
                         <div class="book-price"> &#x20B9;{{book.sellingprice}} <span class="original-price"> {{book.originalprice}}</span> <span class="discount"> {{book.discount}}% off </span></div>
                         <div class="book-badges">
