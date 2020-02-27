@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Book } from './Book';
 import { Observable } from 'rxjs';
+import { Subject } from './Subject';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,18 @@ export class BookServiceService {
   // getBookUrl = 'http://localhost:9999/getBook';
   getBook(bookId): Observable<Book[]> {
     return this.http.get<Book[]>(this.getBookUrl+"/"+bookId);
+  }
+
+  subjectUrl = 'https://bookshare-spring.herokuapp.com/subject';
+  // subjectUrl = 'http://localhost:9999/subject';
+  subject(semester:any, branchId:any): Observable<Subject[]> {
+    return this.http.get<Subject[]>(this.subjectUrl+"/"+semester+"/"+branchId);
+  }
+
+  filterUrl = 'https://bookshare-spring.herokuapp.com/filter';
+  // filterUrl = 'http://localhost:9999/subject';
+  filter(semester:any, branchId:any, subjectId:any): Observable<Book[]> {
+    return this.http.get<Book[]>(this.filterUrl+"/"+semester+"/"+branchId+"/"+subjectId);
   }
 
 }

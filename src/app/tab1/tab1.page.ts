@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { Platform, ModalController, LoadingController} from '@ionic/angular';
+import { Platform, ModalController, LoadingController, ActionSheetController} from '@ionic/angular';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { FilterPage } from '../pages/filter/filter.page';
 import { Book } from '../services/Book';
@@ -23,7 +23,8 @@ export class Tab1Page implements OnInit {
     private modalController: ModalController,
     private loadingController: LoadingController,
     private bookService: BookServiceService,
-    private userService: UserServiceService
+    private userService: UserServiceService,
+    private actionSheetController: ActionSheetController
   ) { 
   }
 
@@ -37,18 +38,39 @@ export class Tab1Page implements OnInit {
     return await loading.present();
   }
 
+  async sort() {
+    const actionSheet = await this.actionSheetController.create({
+      header: "Sort",
+      buttons: [{
+        text: 'Price : Low To High',
+        handler: () => {
+          
+        },
+      },
+      {
+        text: 'Price : High To Low',
+        handler: () => {
+          
+        },
+      }]
+    });
+    await actionSheet.present();
+  }
+
   ngOnInit(){
     this.presentLoadingWithOptions();
-    this.bookService.getAllBook().subscribe( (data) =>  { 
-        this.books = data
-        this.books.forEach(book => {
-          book.add = true;
-        });
-        console.log(this.books)
-      },
-      (error) => { console.log(error) },
-      () => { this.loadingController.dismiss() }
-    );
+    if(sessionStorage.getItem("filter")!='true') {
+      this.bookService.getAllBook().subscribe( (data) =>  { 
+          this.books = data
+          this.books.forEach(book => {
+            book.add = true;
+          });
+          console.log(this.books)
+        },
+        (error) => { console.log(error) },
+        () => { this.loadingController.dismiss() }
+      );
+    }
   }
 
   backButtonSubscription;
@@ -59,6 +81,24 @@ export class Tab1Page implements OnInit {
         navigator["app"].exitApp();
       }
     });
+    if(sessionStorage.getItem('filter')=='true'){
+      this.presentLoadingWithOptions();
+      sessionStorage.removeItem("filter")
+      let semester = sessionStorage.getItem("semester")
+      let branchId = sessionStorage.getItem("branchId")
+      let subjectId = sessionStorage.getItem("subjectId")
+      this.bookService.filter(semester,branchId,subjectId).subscribe(
+        data =>  { 
+          this.books = data
+          this.books.forEach(book => {
+            book.add = true;
+          });
+          console.log(this.books)
+        },
+        (error) => { console.log(error) },
+        () => { this.loadingController.dismiss() }
+      )
+    }
   }
 
   ionViewDidLeave() {

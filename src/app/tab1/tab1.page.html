@@ -11,8 +11,8 @@
 
 <ion-content>
     <div class="filter">
-      <div class="sub-filter"></div>
-      <div><ion-icon name="funnel" (click)="createModal()"></ion-icon> Filter</div>
+      <div class="sub-filter" (click)="sort()"> sort </div>
+      <div (click)="createModal()"><ion-icon name="funnel"></ion-icon> Filter </div>
     </div>
     <div *ngFor="let book of books; let i = index">
     <ion-card>

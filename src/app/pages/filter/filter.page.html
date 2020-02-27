@@ -9,7 +9,6 @@
 
 
 <ion-content>
-  <form #form="ngForm" (ngSubmit)="filter(form)">
     <ion-grid>
       <ion-row justify-content-center>
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
@@ -17,58 +16,54 @@
 
             <ion-item>
               <ion-label>Semester</ion-label>
-              <ion-select name="semester" interface="popover" ngModel>
+              <ion-select name="semester" interface="popover" [(ngModel)]="sem" (ionChange)="semester()">
                 <ion-select-option value=""> Select </ion-select-option>
-                <ion-select-option value="1st"> 1st </ion-select-option>
-                <ion-select-option value="2nd"> 2nd </ion-select-option>
-                <ion-select-option value="3rd"> 3rd  </ion-select-option>
-                <ion-select-option value="4th"> 4th </ion-select-option>
-                <ion-select-option value="5th"> 5th </ion-select-option>
-                <ion-select-option value="6th"> 6th </ion-select-option>
-                <ion-select-option value="7th"> 7th </ion-select-option>
-                <ion-select-option value="8th"> 8th </ion-select-option>
+                <ion-select-option value="1"> 1 </ion-select-option>
+                <ion-select-option value="2"> 2 </ion-select-option>
+                <ion-select-option value="3"> 3 </ion-select-option>
+                <ion-select-option value="4"> 4 </ion-select-option>
+                <ion-select-option value="5"> 5 </ion-select-option>
+                <ion-select-option value="6"> 6 </ion-select-option>
+                <ion-select-option value="7"> 7 </ion-select-option>
+                <ion-select-option value="8"> 8 </ion-select-option>
               </ion-select>
             </ion-item>
 
             <ion-item>
               <ion-label>Branch</ion-label>
-              <ion-select name="branch" interface="popover" ngModel>
+              <ion-select name="branch" interface="popover" [(ngModel)]="branchVar" (ionChange)="branch()">
                 <ion-select-option value=""> Select </ion-select-option>
-                <ion-select-option value="CE"> CE </ion-select-option>
-                <ion-select-option value="IT"> IT </ion-select-option>
-                <ion-select-option value="ME"> ME </ion-select-option>
-                <ion-select-option value="EE"> EE </ion-select-option>
-                <ion-select-option value="IC"> IC </ion-select-option>
+                <ion-select-option value="1"> General </ion-select-option>
+                <ion-select-option value="2"> Civil </ion-select-option>
+                <ion-select-option value="3"> Computer </ion-select-option>
+                <ion-select-option value="4"> Electrical </ion-select-option>
+                <ion-select-option value="5"> EC </ion-select-option>
+                <ion-select-option value="6"> IT </ion-select-option>
+                <ion-select-option value="7"> Mechanical </ion-select-option>
+                <ion-select-option value="8"> Automobile </ion-select-option>
+                <ion-select-option value="9"> Biomedical </ion-select-option>
+                <ion-select-option value="10"> Chemical </ion-select-option>
+                <ion-select-option value="11">Environment </ion-select-option>
+                <ion-select-option value="12"> IC </ion-select-option>
+                <ion-select-option value="13"> Plastic </ion-select-option>
+                <ion-select-option value="14"> Rubber </ion-select-option>
+                <ion-select-option value="15"> Textile </ion-select-option>
               </ion-select>
             </ion-item>
 
             <ion-item>
               <ion-label>Subject</ion-label>
-              <ion-select name="subject" interface="popover" ngModel>
+              <ion-select name="subject" interface="popover" [(ngModel)]="sub" (ionChange)="subject()">
                 <ion-select-option value=""> Select </ion-select-option>
-                <ion-select-option value="WT"> WT </ion-select-option>
-                <ion-select-option value="DOS"> DOS </ion-select-option>
-                <ion-select-option value="SE"> SE </ion-select-option>
-                <ion-select-option value="AJAVA"> AJAVA </ion-select-option>
-                <ion-select-option value="TOC"> TOC </ion-select-option>
-              </ion-select>
-            </ion-item>
-
-            <ion-item>
-              <ion-label>Sort</ion-label>
-              <ion-select name="sort" interface="popover" ngModel>
-                <ion-select-option value=""> Relevance </ion-select-option>
-                <ion-select-option value="lth"> Price : Low To High </ion-select-option>
-                <ion-select-option value="htl"> Price : High To Low </ion-select-option>
+                  <ion-select-option [value]="sub.subjectid" *ngFor="let sub of subjects"> {{sub.subjectname}} </ion-select-option>
               </ion-select>
             </ion-item>
 
           </div>
           <div padding>
-            <ion-button size="large" shape="round" type="submit" [disabled]="form.invalid" expand="block">Apply</ion-button>
+            <ion-button size="large" shape="round" type="submit" [disabled]="invalid" expand="block" (click)="apply()">Apply</ion-button>
           </div>
         </ion-col>
       </ion-row>
     </ion-grid>
-    </form>
 </ion-content>
