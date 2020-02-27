@@ -37,7 +37,7 @@ ion-content {
 }
 
 .discount{
-  color: #3484f0;//#035781;
+  color: #047bd5;//#035781;
 }
 
 .original-price{
@@ -51,7 +51,7 @@ ion-content {
 
 ion-badge{
   margin-right: 5px;
-  background-color: #3484f0;//#035781;
+  background-color: #3484f0;;
   font-size: 12px;
   padding: 6px;
 }
@@ -62,14 +62,27 @@ img{
 }
 
 .filter {
-  height: 50px;
+  height: 45px;
   width: 100%;
-  box-shadow: 0 2px 0 0 grey;
+  box-shadow: 0 2px 0 0 rgba($color: #dbdad7, $alpha: 1.0);
+  
 }
 
 .sub-filter {
   width: 50%;
   height: 100%;
   float: left;
-  box-shadow: 2px 0 0 0 grey;
+  box-shadow: 2px 0 0 0 rgba($color: #dbdad7, $alpha: 1.0);
+
+  text-align: center; 
+  font-size: 16px;
+  padding-top: 14px; 
+}
+
+.fill
+{
+  text-align: center;
+   font-size: 16px; 
+   padding-top: 14px; 
+   height: 45px;
 }

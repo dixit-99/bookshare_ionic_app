@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import { NavController, ToastController, Platform } from '@ionic/angular';
+import { NavController, ToastController, Platform, LoadingController } from '@ionic/angular';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { UserServiceService } from 'src/app/services/user-service.service';
 
@@ -19,8 +19,18 @@ export class LoginPage {
     private navController: NavController,
     private nativeStorage: NativeStorage,
     private platform: Platform,
+    private loadingController: LoadingController,
     private userService: UserServiceService
   ) { }
+
+  async presentLoadingWithOptions() {
+    const loading = await this.loadingController.create({
+      spinner: "crescent",
+      mode: "ios",
+      cssClass: "myspin"
+    });
+    return await loading.present();
+  }
 
   togglePasswordMode() {   
     this.password_type = this.password_type === 'text' ? 'password' : 'text';
@@ -39,10 +49,17 @@ export class LoginPage {
 
 
   login(form) {
-    if(form.value.email=="" || form.value.password =="")
+    if(form.value.email=="" || form.value.password =="") {
       this.status = true;
-    else  
-      this.userService.login(form.value.email,form.value.password).subscribe( userId => this.loginCheck(userId));    
+    }
+    else {
+      this.presentLoadingWithOptions();
+      this.userService.login(form.value.email,form.value.password).subscribe( 
+        userId => this.loginCheck(userId),
+        error => console.log(error),
+        () => this.loadingController.dismiss()
+      );
+    }  
   }
 
   loginCheck(userId){

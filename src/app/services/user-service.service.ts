@@ -42,5 +42,17 @@ export class UserServiceService {
   addWishlist(userId,bookId) : Observable<number> {
     return this.http.post<number>(this.addWishlistUrl+"/"+ userId+"/"+bookId,null);
   }
+
+  rmWishlistUrl='https://bookshare-spring.herokuapp.com/rmWishlist';
+  // rmwishlistUrl='http://localhost:9999/rmWishlist';
+  rmWishlist(wishlistId) : Observable<void> {
+    return this.http.delete<void>(this.rmWishlistUrl+"/"+wishlistId);
+  }
+
+  getWishlistUrl='https://bookshare-spring.herokuapp.com/getWishlist';
+  // getwishlistUrl='http://localhost:9999/getWishlist';
+  getWishlist(userId) : Observable<Book[]> {
+    return this.http.get<Book[]>(this.getWishlistUrl+"/"+userId);
+  }
   
 }

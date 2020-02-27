@@ -39,8 +39,8 @@ export class BookServiceService {
 
   filterUrl = 'https://bookshare-spring.herokuapp.com/filter';
   // filterUrl = 'http://localhost:9999/subject';
-  filter(semester:any, branchId:any, subjectId:any): Observable<Book[]> {
-    return this.http.get<Book[]>(this.filterUrl+"/"+semester+"/"+branchId+"/"+subjectId);
+  filter(semester:any, branchId:any, subjectId:any ,college:any): Observable<Book[]> {
+    return this.http.get<Book[]>(this.filterUrl+"/"+semester+"/"+branchId+"/"+subjectId+"/"+college);
   }
 
 }

@@ -15,7 +15,14 @@ export class FilterPage {
   sem:any;
   branchVar:any;
   sub:any;
+  college:any;
   subjects: Subject[];
+  colleges : any[] = [
+    {name:'LD'},
+    {name:'VGEC'},
+    {name:'LJ'},
+    {name:'DAIICT'},
+  ];
   invalid:any = true;
 
   constructor(
@@ -86,6 +93,7 @@ export class FilterPage {
     sessionStorage.setItem("semester",this.sem)
     sessionStorage.setItem("branchId",this.branchVar)
     sessionStorage.setItem("subjectId",this.sub)
+    sessionStorage.setItem("college",this.college)
     sessionStorage.setItem("filter", 'true')
     this.router.navigateByUrl('tabs/tab2').then(e => {
       this.router.navigateByUrl('/tabs/tab1')

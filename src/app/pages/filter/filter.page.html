@@ -43,7 +43,7 @@
                 <ion-select-option value="8"> Automobile </ion-select-option>
                 <ion-select-option value="9"> Biomedical </ion-select-option>
                 <ion-select-option value="10"> Chemical </ion-select-option>
-                <ion-select-option value="11">Environment </ion-select-option>
+                <ion-select-option value="11"> Environment </ion-select-option>
                 <ion-select-option value="12"> IC </ion-select-option>
                 <ion-select-option value="13"> Plastic </ion-select-option>
                 <ion-select-option value="14"> Rubber </ion-select-option>
@@ -55,7 +55,15 @@
               <ion-label>Subject</ion-label>
               <ion-select name="subject" interface="popover" [(ngModel)]="sub" (ionChange)="subject()">
                 <ion-select-option value=""> Select </ion-select-option>
-                  <ion-select-option [value]="sub.subjectid" *ngFor="let sub of subjects"> {{sub.subjectname}} </ion-select-option>
+                <ion-select-option [value]="sub.subjectid" *ngFor="let sub of subjects"> {{sub.subjectname}} </ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>College</ion-label>
+              <ion-select name="college" interface="popover" [(ngModel)]="college" (ionChange)="college()">
+                <ion-select-option value=""> Select </ion-select-option>
+                <ion-select-option [value]="col.name" *ngFor="let col of colleges"> {{col.name}} </ion-select-option>
               </ion-select>
             </ion-item>
 

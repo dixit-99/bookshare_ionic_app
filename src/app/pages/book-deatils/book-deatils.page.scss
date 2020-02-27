@@ -20,23 +20,29 @@ img {
     color: #3484f0;
 }
 table {
-    margin-top: 12px; font-size: 15px; width: 95%; padding: 10px; 
-    background-color: #3484f0; color: white; border-color:none; margin-left: 2.5%;margin-bottom: 52px;
+    margin-top: 12px; font-size: 15px; width: 98%; padding: 10px; 
+    background-color: #3484f0; color: white; border-color:none;margin-bottom: 52px;margin-left:1%;
 }
 td {
-    padding: 5px;border: 5px solid white;border-collapse: collapse;
-    margin:40px !important
+    padding: 5px;border: 2px solid white;border-collapse: collapse;
 }
 .div1{
     position: fixed; bottom: 0; width: 100%; height: 45px; text-align: center; font-weight: bold; font-size: 15px;
+    box-shadow:
+    2.8px 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.06),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    100px  100px 80px rgba(0, 0, 0, 0.12);
 }
 .button{
-    width: 47.5%; height: 100%; float: left; padding-top: 13px; color:#3483f0; background-color: white;
-    border: 1px solid #3484f0;margin-left: 2.6%;
+    width: 50%; height: 100%; float: left; padding-top: 13px; color:black; background-color: white;
+    background-color: white;box-shadow: 5px ;
 }
 .button2{
-    width: 47.3%; height: 100%; float: left; padding-top: 13px; color:#3483f0; background-color: white;
-    border: 1px solid #3484f0;border-left: 0px;margin-right: 2.5%;
+    width: 50%; height: 100%; float: left; padding-top: 13px; color:white; background-color: white;
+    border-left: 0px; background-color: #fb641b;
 }
 .table2 {
     background-color: white;
@@ -45,7 +51,7 @@ td {
     font-weight: bold;
 }
 .table2_tr1{
-    text-align: center;
+    text-align: left;
 }
 .table2_tr2{
     text-align: left;

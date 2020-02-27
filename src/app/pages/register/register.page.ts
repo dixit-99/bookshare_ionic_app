@@ -15,7 +15,7 @@ export class RegisterPage implements OnInit {
 
   userForm : FormGroup;
   user : User;
-  college : any[] = ['LD','VGEC','LJ','SO','DAIICT' ];
+  college : any[] = ['LD','VGEC','LJ','DAIICT' ];
   backButtonSubscription: any;
   password_type: string = 'password';
   password_icon: string = 'eye-off';

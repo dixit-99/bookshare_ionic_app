@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { Platform, ModalController, LoadingController, ActionSheetController} from '@ionic/angular';
+import { Platform, ModalController, LoadingController, ActionSheetController, ToastController} from '@ionic/angular';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { FilterPage } from '../pages/filter/filter.page';
 import { Book } from '../services/Book';
@@ -14,7 +14,8 @@ import { UserServiceService } from '../services/user-service.service';
 })
 export class Tab1Page implements OnInit {
 
-  books: Book[];
+  books: any[];
+  backButtonSubscription: any;
 
   constructor(
     private router: Router,
@@ -24,7 +25,8 @@ export class Tab1Page implements OnInit {
     private loadingController: LoadingController,
     private bookService: BookServiceService,
     private userService: UserServiceService,
-    private actionSheetController: ActionSheetController
+    private actionSheetController: ActionSheetController,
+    private toastController: ToastController
   ) { 
   }
 
@@ -44,13 +46,17 @@ export class Tab1Page implements OnInit {
       buttons: [{
         text: 'Price : Low To High',
         handler: () => {
-          
+          this.books.sort(function(a,b) {
+            return a.sellingprice - b.sellingprice;
+          })
         },
       },
       {
         text: 'Price : High To Low',
         handler: () => {
-          
+          this.books.sort(function(a,b) {
+            return b.sellingprice - a.sellingprice;
+          })
         },
       }]
     });
@@ -73,21 +79,15 @@ export class Tab1Page implements OnInit {
     }
   }
 
-  backButtonSubscription;
-
   ionViewWillEnter() {
-    this.backButtonSubscription = this.platform.backButton.subscribeWithPriority(3,() => {
-      if(window.confirm("Do you want to exit app ?")) {
-        navigator["app"].exitApp();
-      }
-    });
     if(sessionStorage.getItem('filter')=='true'){
       this.presentLoadingWithOptions();
       sessionStorage.removeItem("filter")
       let semester = sessionStorage.getItem("semester")
       let branchId = sessionStorage.getItem("branchId")
       let subjectId = sessionStorage.getItem("subjectId")
-      this.bookService.filter(semester,branchId,subjectId).subscribe(
+      let college = sessionStorage.getItem("college")
+      this.bookService.filter(semester,branchId,subjectId,college).subscribe(
         data =>  { 
           this.books = data
           this.books.forEach(book => {
@@ -98,6 +98,31 @@ export class Tab1Page implements OnInit {
         (error) => { console.log(error) },
         () => { this.loadingController.dismiss() }
       )
+
+      this.backButtonSubscription = this.platform.backButton.subscribeWithPriority(3,() => {
+        this.bookService.getAllBook().subscribe( (data) =>  { 
+            this.books = data
+            this.books.forEach(book => {
+              book.add = true;
+            });
+            console.log(this.books)
+            this.backButtonSubscription = this.platform.backButton.subscribeWithPriority(3,() => {
+              if(window.confirm("Do you want to exit app ?")) {
+                navigator["app"].exitApp();
+              }
+            });
+          },
+          (error) => { console.log(error) },
+          () => { this.loadingController.dismiss() }
+        );
+      });
+    }
+    else {
+      this.backButtonSubscription = this.platform.backButton.subscribeWithPriority(3,() => {
+        if(window.confirm("Do you want to exit app ?")) {
+          navigator["app"].exitApp();
+        }
+      });
     }
   }
 
@@ -119,12 +144,9 @@ export class Tab1Page implements OnInit {
 
   addWishlist(i,bookid) {
     this.books[i].add = false;
-    this.books[i].bookName = "abc"
     this.nativeStorage.getItem('userId').then(
       (data) => { this.userService.addWishlist(data.user,bookid).subscribe(
-                  (data) => {  let wishlistId = data
-                      this.books[i].bookName = "abc"
-                  },
+                  (data) => {  this.books[i].wishlistId = data },
                   (error) => { console.log(error) }
                   )
                 },
@@ -132,7 +154,25 @@ export class Tab1Page implements OnInit {
     )
   }
 
-  rmWishlist(wishlistId) {
+  rmWishlist(i,wishlistId) {
+    this.books[i].add = true;
+    this.userService.rmWishlist(this.books[i].wishlistId).subscribe(
+      () => {},
+      (error) => { console.log(error) },
+      () => {}
+    )
+  }
 
+  refresh() {
+    this.presentLoadingWithOptions();
+    this.bookService.getAllBook().subscribe( (data) =>  { 
+      this.books = data
+      this.books.forEach(book => {
+        book.add = true;
+      });
+      },
+      (error) => { console.log(error) },
+      () => { this.loadingController.dismiss() }
+    );
   }
 }
